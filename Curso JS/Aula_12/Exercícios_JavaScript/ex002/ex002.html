@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de idade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+    <div>Verificador de idade</div>
+    <div>Ano do nascimento:
+        <input type="number" id="anoNascimento" placeholder="Digite seu ano de nascimento">
+    </div>
+    <div id="sexo">Sexo:
+        <input type="radio" name="sexo" id="masculino" value="masculino"> Masculino
+        <input type="radio" name="sexo" id="feminino" value="feminino"> Feminino
+    </div>
+    <div><input type="submit" value="Verificar" onclick="Verificador()"></div>
+    <div id="resultado"></div>
+</section>
+<div id="imagem"></div>
+    <script>
+        var anoAtual = new Date().getFullYear();
+        var anoNascimento = document.getElementById('anoNascimento');
+        var sexomasculino = document.getElementById('masculino');
+        var sexofeminino = document.getElementById('feminino');
+        var resultado = document.getElementById('resultado');
+        var imagem = document.getElementById('imagem');
+
+        function Verificador() {
+            var idade = anoAtual - anoNascimento.value
+            if (idade < 0 || anoNascimento.value == '' || idade > 150) {
+                resultado.innerHTML = 'Mano nem existe'
+            } else if (idade < 13 && sexomasculino.checked) {
+                resultado.innerHTML = `Você é um garoto de ${idade} anos.`
+                imagem.innerHTML = '<img src="menino.jpg" alt="Imagem de um menino class="imagem-ajustada">'; // Imagem menino
+
+            }  else if (idade < 13 && sexofeminino.checked) {
+                resultado.innerHTML = `Você é uma garota de ${idade} anos.`
+                imagem.innerHTML = '<img src="menina.jpg" alt="Imagem de uma menina class="imagem-ajustada">'; // Imagem menina
+
+            } else if (idade < 18 && sexomasculino.checked) {
+                resultado.innerHTML = `Você é um adolescente de ${idade} anos.` 
+                imagem.innerHTML = '<img src="jovem.jpg" alt="Imagem de um jovem class="imagem-ajustada">'; // Imagem jovem
+
+            } else if (idade < 18 && sexofeminino.checked) {
+                resultado.innerHTML = `Você é uma adolescente de ${idade} anos.`
+                imagem.innerHTML = '<img src="jovem garota.jpg" alt="Imagem de uma jovem garota class="imagem-ajustada">'; // Imagem jovem garota
+
+            } else if (idade >= 18 && idade <= 59 && sexomasculino.checked) {
+                resultado.innerHTML = `Você é um homem de ${idade} anos.`
+                imagem.innerHTML = '<img src="adulto.jpg" alt="Imagem de um adulto class="imagem-ajustada">'; // Imagem adulto
+
+            } else if (idade >= 18 && idade <= 59 && sexofeminino.checked) {
+                resultado.innerHTML = `Você é uma mulher de ${idade} anos.`
+                imagem.innerHTML = '<img src="adulta.jpg" alt="Imagem de uma adulta class="imagem-ajustada">'; // Imagem adulta
+
+            } else if (sexomasculino.checked && idade >= 60) {
+                resultado.innerHTML = `Você é um senhor de ${idade} anos.`
+                imagem.innerHTML = '<img src="idoso.jpg" alt="Imagem de um idoso class="imagem-ajustada">'; // Imagem idoso
+
+            } else if (sexofeminino.checked && idade >= 60) {
+                resultado.innerHTML = `Você é uma senhora de ${idade} anos.`
+                imagem.innerHTML = '<img src="idosa.jpg" alt="Imagem de uma idosa class="imagem-ajustada">'; // Imagem idosa
+
+            } else {
+                resultado.innerHTML = 'Selecione um sexo.'
+            }
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora do dia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <div id="apresentacaohora"></div>
+        <div id="hora"></div>
+        <div id="imagem"></div>
+    </section>
+
+    <script>
+        var apresentacao = document.getElementById('apresentacaohora')
+        var imagem = document.getElementById('imagem')
+        var agora = new Date()
+        var hora = agora.getHours()
+        var divHora = document.getElementById('hora')
+        var corpo = document.body
+
+        apresentacao.innerHTML = `Agora são ${hora} horas.`
+
+        if (hora > 0 && hora < 6) {
+            divHora.innerHTML = 'Boa madrugada!'
+            corpo.style.backgroundColor = '#01011c'
+            imagem.innerHTML = '<img src="blog-noite.jpg" alt="Imagem da madrugada" style="width: 100%; max-width: 300px;">';
+        } else if (hora >= 6 && hora < 12) {
+            divHora.innerHTML = 'Bom dia!'
+            corpo.style.backgroundColor = '#FFFF00'
+            imagem.innerHTML = '<img src="istockphoto-917178010-612x612.jpg" alt="Imagem do dia" style="width: 100%; max-width: 300px;">';
+        } else if (hora >= 12 && hora < 18) {
+            divHora.innerHTML = 'Boa tarde!'
+            corpo.style.backgroundColor = '#FF7F50'
+            imagem.innerHTML = '<img src="tarde.jpg" alt="Imagem da tarde" style="width: 100%; max-width: 300px;">';
+        } else {
+            divHora.innerHTML = 'Boa noite!'
+            corpo.style.backgroundColor = '#000000'
+            imagem.innerHTML = '<img src="noite.png" alt="Imagem da noite" style="width: 100%; max-width: 300px;">';
+        }
+    </script>
+</body>
+<footer>
+    <p>Desenvolvido por Ivan</p>
+</html>
